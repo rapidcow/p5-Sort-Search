@@ -1,5 +1,6 @@
 There was a typo.
 
+$ ~/tree/utils/diff-range master 16 github/master
 ORIG = 41e4da48b65f97339c9731efeb728fc67c3f51da (master)
 HEAD = 911abd5e1c68e941207daf70a3ee886b0de6cf7f (github/master)
  0:  41e4da4 =  0:  911abd5 s/program/module/
