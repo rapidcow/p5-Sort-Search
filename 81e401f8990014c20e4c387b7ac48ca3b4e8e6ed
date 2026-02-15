@@ -1,36 +1,36 @@
 There was a typo.
 
-$ ~/tree/utils/diff-range master 16 github/master
-ORIG = 41e4da48b65f97339c9731efeb728fc67c3f51da (master)
-HEAD = 911abd5e1c68e941207daf70a3ee886b0de6cf7f (github/master)
- 0:  41e4da4 =  0:  911abd5 s/program/module/
- 1:  b545ea4 =  1:  bd91d95 Move the hyperlinks further down
- 2:  46142e2 =  2:  d212449 Transplant AUTHORship and LICENSE to source file
- 3:  db46a50 =  3:  3836834 Wait you can like, separate .pod from .pm
- 4:  918baa1 =  4:  7a638d1 Add Cookbook.pod for practical examples
- 5:  ecd3bfa =  5:  adf415a Move POD down
- 6:  c4ea918 =  6:  69db042 Bump copyright here too
- 7:  e0abdeb =  7:  453cba9 argh screw it, no emails in the README
- 8:  5f58724 =  8:  0a8360e Bump copyright year?
- 9:  b010b98 =  9:  0061379 first/last is probably a bad description
-10:  2ffe5b0 = 10:  ca69f03 fill in the docs
-11:  dd4a7a6 = 11:  e90ac4b The (x) => (1 - x) was likely not a very good map
-12:  bdfea9e = 12:  233453a CPANSec was done a while ago, so cross it off
-13:  1b558bd = 13:  6d400d2 Similarly fix the inconsistent error messages...
-14:  1a8351c = 14:  826990f brsrch[01x] were calling the wrong implementation
-15:  05e3a4a ! 15:  8156d1b Clean imports
---- a/05e3a4acf9b1d933522fe2ff592a31e5b95cdc3e	2026-02-15 21:02:50.000000000 +0000
-+++ b/8156d1bfee97a6e3c40be0a001daff7d52288412	2025-12-03 12:52:22.000000000 +0000
+$ ~/tree/utils/diff-range github/master 16 master
+ORIG = 911abd5e1c68e941207daf70a3ee886b0de6cf7f (github/master)
+HEAD = 41e4da48b65f97339c9731efeb728fc67c3f51da (master)
+ 0:  911abd5 =  0:  41e4da4 s/program/module/
+ 1:  bd91d95 =  1:  b545ea4 Move the hyperlinks further down
+ 2:  d212449 =  2:  46142e2 Transplant AUTHORship and LICENSE to source file
+ 3:  3836834 =  3:  db46a50 Wait you can like, separate .pod from .pm
+ 4:  7a638d1 =  4:  918baa1 Add Cookbook.pod for practical examples
+ 5:  adf415a =  5:  ecd3bfa Move POD down
+ 6:  69db042 =  6:  c4ea918 Bump copyright here too
+ 7:  453cba9 =  7:  e0abdeb argh screw it, no emails in the README
+ 8:  0a8360e =  8:  5f58724 Bump copyright year?
+ 9:  0061379 =  9:  b010b98 first/last is probably a bad description
+10:  ca69f03 = 10:  2ffe5b0 fill in the docs
+11:  e90ac4b = 11:  dd4a7a6 The (x) => (1 - x) was likely not a very good map
+12:  233453a = 12:  bdfea9e CPANSec was done a while ago, so cross it off
+13:  6d400d2 = 13:  1b558bd Similarly fix the inconsistent error messages...
+14:  826990f = 14:  1a8351c brsrch[01x] were calling the wrong implementation
+15:  8156d1b ! 15:  05e3a4a Clean imports
+--- a/8156d1bfee97a6e3c40be0a001daff7d52288412	2025-12-03 12:52:22.000000000 +0000
++++ b/05e3a4acf9b1d933522fe2ff592a31e5b95cdc3e	2026-02-15 21:02:50.000000000 +0000
 @@ -1,10 +1,10 @@
  tree 5808b01c4335be6e0869c5334cde36b7733d375f
  parent cf79245013e798131cc9cd2394080aad0641db91
  author Ethan Meng <ethan@rapidcow.org> 1764766342 -0600
--committer Ethan Meng <ethan@rapidcow.org> 1771189370 -0600
-+committer Ethan Meng <ethan@rapidcow.org> 1764766342 -0600
+-committer Ethan Meng <ethan@rapidcow.org> 1764766342 -0600
++committer Ethan Meng <ethan@rapidcow.org> 1771189370 -0600
  
  Clean imports
  
--Scalar::Util is actually unused; also, given how
-+Scalar::Utils is actually unused; also, given how
+-Scalar::Utils is actually unused; also, given how
++Scalar::Util is actually unused; also, given how
  sparingly we call croak, we really don't need to
  import it into our namespace...
