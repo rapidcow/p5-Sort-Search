@@ -2,5 +2,11 @@
 	repositoryformatversion = 0
 	filemode = true
 	bare = true
+[shell "DEFAULT"]
+	permission = rx
+[shell "guest@rapidcow.org"]
+	permission = rx
 [shell "rapidcow@RCs-T480s.local"]
+	permission = rwsx
+[shell "rapidcow@RCs-MacBook-Pro.local"]
 	permission = rwsx
