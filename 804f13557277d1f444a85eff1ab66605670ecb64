@@ -1,0 +1,104 @@
+The last dot makes it clear that I am talking about
+the full-qualifiied domain name "bogus.ietf.org."
+and not "bogus.ietf.org.ietf.org" (which apparently
+is totally a thing!  This domain-inside-domain deal
+They do this in China, it's something called GeoDNS
+(was watching the query log of my BIND 9 server and
+found DNS queries made to bdydns.com that contained
+OTHER domains o_O 亏他们能想得出来... tsk tsk =n=))
+
+$ git range-diff repo+ssh/devel~4..repo+ssh/devel devel~4..devel
+1:  9ebb57e ! 1:  e65cd15 Test out implication of the five-element form
+    @@ xt/nsec-search.t (new)
+     +	my ($hi, $prv, $lo, $nxt);
+     +
+     +	# This example is given as the NSEC record
+    -+	# that denies the existence of "bogus.ietf.org"
+    ++	# that denies the existence of "bogus.ietf.org."
+     +	($hi, $prv, $lo, $nxt) = bsrchpx
+     +		{ $cmp_rr->($_, "bogus.$ORIGIN") }
+     +		\@mock_zone;
+2:  2fc71f4 = 2:  567b0d8 Test two more weird edge cases
+3:  6a83b24 = 3:  6eadbf3 Add tests for the text-file thingy
+4:  26042a6 = 4:  ba6fa8e Continue draft
+
+$ ~/tree/utils/diff-range --diff-tree repo+ssh/devel 4 devel
+ORIG = 26042a6505985dd065370d54d2b3a88394cf2adf (repo+ssh/devel)
+HEAD = ba6fa8ecf6ae63185b2cf13ee36b0b2758dca427 (devel)
+ 0:  26042a6 !  0:  ba6fa8e Continue draft
+--- a/26042a6505985dd065370d54d2b3a88394cf2adf	2026-03-15 06:01:39.000000000 +0000
++++ b/ba6fa8ecf6ae63185b2cf13ee36b0b2758dca427	2026-03-15 06:01:39.000000000 +0000
+@@ -1,5 +1,5 @@
+-tree e8160d87cad3cf74333947004e401581aa7f4129
++tree 52cde430940c4ed11bb91588496fb4c5e861c3f9
+ parent [1]
+ author Ethan Meng <ethan@rapidcow.org> 1773554432 -0500
+ committer Ethan Meng <ethan@rapidcow.org> 1773554499 -0500
+ 
+ 1:  6a83b24 !  1:  6eadbf3 Add tests for the text-file thingy
+--- a/6a83b249aa24986a2bfbc9a1c16305915393e8a2	2026-03-15 04:50:01.000000000 +0000
++++ b/6eadbf3b56ca9bd6790a9ecd561da711d381e428	2026-03-15 04:50:01.000000000 +0000
+@@ -1,5 +1,5 @@
+-tree 16431a887abffced8f3622bb5d010618254f66f4
++tree 7d58168696c572d0ec42a22f2f11c25fd9962816
+ parent [2]
+ author Ethan Meng <ethan@rapidcow.org> 1773549983 -0500
+ committer Ethan Meng <ethan@rapidcow.org> 1773550201 -0500
+ 
+ 2:  2fc71f4 !  2:  567b0d8 Test two more weird edge cases
+--- a/2fc71f40d516f5eb137bce6a443ff98a8a0da58e	2026-03-15 04:29:12.000000000 +0000
++++ b/567b0d8a9f15940745c106c61fc94ea8bbc1e895	2026-03-15 04:29:12.000000000 +0000
+@@ -1,5 +1,5 @@
+-tree 3ed294b63e4b1228967454a43942c79c4b6e8d10
++tree b81a3b8b517a74b902d5f54e78dba3d467beb34e
+ parent [3]
+ author Ethan Meng <ethan@rapidcow.org> 1773548902 -0500
+ committer Ethan Meng <ethan@rapidcow.org> 1773548952 -0500
+ 
+
+--- a/2fc71f40d516f5eb137bce6a443ff98a8a0da58e.patch	2026-03-15 04:29:12.000000000 +0000
++++ b/567b0d8a9f15940745c106c61fc94ea8bbc1e895.patch	2026-03-15 04:29:12.000000000 +0000
+@@ -1,6 +1,6 @@
+ diff --git a/xt/nsec-search.t b/xt/nsec-search.t
+-index a043927..a00b11b 100644
++index 4f87479..0855a1a 100644
+ --- a/xt/nsec-search.t
+ +++ b/xt/nsec-search.t
+ @@ -18,7 +18,7 @@ BEGIN {
+  
+
+ 3:  9ebb57e !  3:  e65cd15 Test out implication of the five-element form
+--- a/9ebb57ee3e5fc96fd5477c9730b05f1ec9d7e6c2	2026-03-15 04:22:48.000000000 +0000
++++ b/e65cd15b503c7614bac37e69556bc8690882970b	2026-03-15 04:22:48.000000000 +0000
+@@ -1,5 +1,5 @@
+-tree c27b854b0b87dfbe19fd06fd4b356071ea2eb094
++tree fd63be552fbbf5c0c24958df9ef587a0322594b1
+ parent fdd65237a6e0d4a317955a48c96d45c7ed36c978
+ author Ethan Meng <ethan@rapidcow.org> 1773547278 -0500
+ committer Ethan Meng <ethan@rapidcow.org> 1773548568 -0500
+ 
+$ ~/tree/utils/diff-range --diff-tree repo+ssh/devel 4 devel
+--- a/9ebb57ee3e5fc96fd5477c9730b05f1ec9d7e6c2.patch	2026-03-15 04:22:48.000000000 +0000
++++ b/e65cd15b503c7614bac37e69556bc8690882970b.patch	2026-03-15 04:22:48.000000000 +0000
+@@ -169,9 +169,9 @@
+ +
+ +1;
+ diff --git a/xt/nsec-search.t b/xt/nsec-search.t
+ new file mode 100644
+-index 0000000..a043927
++index 0000000..4f87479
+ --- /dev/null
+ +++ b/xt/nsec-search.t
+ @@ -0,0 +1,79 @@
+ +#!perl
+@@ -222,9 +222,9 @@
+ +
+ +	my ($hi, $prv, $lo, $nxt);
+ +
+ +	# This example is given as the NSEC record
+-+	# that denies the existence of "bogus.ietf.org"
+++	# that denies the existence of "bogus.ietf.org."
+ +	($hi, $prv, $lo, $nxt) = bsrchpx
+ +		{ $cmp_rr->($_, "bogus.$ORIGIN") }
+ +		\@mock_zone;
+ +	cmp_ok ($hi, '<', $lo);
