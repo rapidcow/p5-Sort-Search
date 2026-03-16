@@ -10,3 +10,5 @@
 	permission = rwsx
 [shell "rapidcow@RCs-MacBook-Pro.local"]
 	permission = rwsx
+[shell "emeng@cs.wisc.edu"]
+	permission = rwx
