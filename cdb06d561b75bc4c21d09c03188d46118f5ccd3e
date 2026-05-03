@@ -62,9 +62,9 @@ HEAD = ba6fa8ecf6ae63185b2cf13ee36b0b2758dca427 (codeberg/devel)
 -it just has to be *somehow* rewritten, blegh!
 +we might face problems if is larger... it just has to
 +be *somehow* rewritten, blegh!
-
+ 
  [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
-
+ 
  (My takeaway is that we perform blsrchx, *but* keep
 
 $ git range-diff devel~58..devel~15 codeberg/devel~43..codeberg/devel
@@ -77,9 +77,9 @@ $ git range-diff devel~58..devel~15 codeberg/devel~43..codeberg/devel
     -    it just has to be *somehow* rewritten, blegh!
     +    we might face problems if is larger... it just has to
     +    be *somehow* rewritten, blegh!
-
+     
          [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
-
+     
  2:  7288916 =  2:  7bea16a More range tests on absurd sets of numbers
  3:  9bd1e88 =  3:  02a3db7 Hide copyright from GitHub readme
  4:  fa7dba0 =  4:  7f74f70 Move attribution out of the "paper"
@@ -184,9 +184,9 @@ HEAD = ba6fa8ecf6ae63185b2cf13ee36b0b2758dca427 (repo+ssh/devel)
 -it just has to be *somehow* rewritten, blegh!
 +we might face problems if is larger... it just has to
 +be *somehow* rewritten, blegh!
-
+ 
  [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
-
+ 
  (My takeaway is that we perform blsrchx, *but* keep
 
 and a range diff just because i haven't pushed yet and
@@ -202,9 +202,9 @@ $ git range-diff devel~58..devel~15 repo+ssh/devel~43..repo+ssh/devel
     -    it just has to be *somehow* rewritten, blegh!
     +    we might face problems if is larger... it just has to
     +    be *somehow* rewritten, blegh!
-
+     
          [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
-
+     
  2:  7288916 =  2:  7bea16a More range tests on absurd sets of numbers
  3:  9bd1e88 =  3:  02a3db7 Hide copyright from GitHub readme
  4:  fa7dba0 =  4:  7f74f70 Move attribution out of the "paper"
