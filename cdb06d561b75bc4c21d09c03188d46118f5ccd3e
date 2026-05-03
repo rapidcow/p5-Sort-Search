@@ -62,9 +62,9 @@ HEAD = ba6fa8ecf6ae63185b2cf13ee36b0b2758dca427 (codeberg/devel)
 -it just has to be *somehow* rewritten, blegh!
 +we might face problems if is larger... it just has to
 +be *somehow* rewritten, blegh!
- 
+
  [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
- 
+
  (My takeaway is that we perform blsrchx, *but* keep
 
 $ git range-diff devel~58..devel~15 codeberg/devel~43..codeberg/devel
@@ -77,9 +77,134 @@ $ git range-diff devel~58..devel~15 codeberg/devel~43..codeberg/devel
     -    it just has to be *somehow* rewritten, blegh!
     +    we might face problems if is larger... it just has to
     +    be *somehow* rewritten, blegh!
-     
+
          [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
-     
+
+ 2:  7288916 =  2:  7bea16a More range tests on absurd sets of numbers
+ 3:  9bd1e88 =  3:  02a3db7 Hide copyright from GitHub readme
+ 4:  fa7dba0 =  4:  7f74f70 Move attribution out of the "paper"
+ 5:  bcaa2f7 =  5:  81ce87d Re-implement blsrch2
+ 6:  fa35cd2 =  6:  fcee201 Re-implement brsrch2
+ 7:  cfd2206 =  7:  1bb4eb7 Comment the 2-index searches
+ 8:  5b5ed2d =  8:  2aa2954 Test with a larger equal range for fun ;P
+ 9:  9775b10 =  9:  f183b0b Add copyright to sources
+10:  60ec712 = 10:  91b09e3 Improve "exact match" examples
+11:  09cf02d = 11:  4948252 Conversion guide for some modules
+12:  2ce903e = 12:  b58801f Stylistic tweaks
+13:  fa6fc7a = 13:  8a696c9 DRAFT: section of the "paper" about the real search
+14:  1f4ea92 = 14:  8f96cdc Be more precise with what the "array" is here
+15:  34fe25f = 15:  9cd3485 Update renames in the comments
+16:  3e3f90f = 16:  ef0536d typography: use B<...> for important words
+17:  3480b25 = 17:  f83e3d3 doctest.t also belongs in the old test suite
+18:  9a7d4e9 = 18:  2a29f52 Just call these guys "terms"
+19:  c53519b = 19:  3fbcbbc Bug-catching POD examples with tests
+20:  fe345a4 = 20:  5c7b285 Finish exact match tests
+21:  930dc77 = 21:  a8d09c3 Re-write and test List::BinarySearch conversion
+22:  bfc7330 = 22:  0996cd1 Pin the total of List::BinarySearch subtests
+23:  0f46748 = 23:  2df4824 Add conversion guide for List::Search
+24:  dd5d2b3 = 24:  c2cb0f6 probably drop the parens around "plan"
+25:  7cae5a2 = 25:  94c0b6d Test conversion guide for List::MoreUtils
+26:  794cfb8 = 26:  43abb34 Close out the subtest code block for consistency
+27:  a25d250 = 27:  5e7b0d7 Fix a bunch of POD typos
+28:  dcd8b9a = 28:  708c0d9 Have Claude review my draft as well
+29:  6a60b32 = 29:  41cc3e6 Remove the "concrete" example amid the main POD
+30:  70c96c5 = 30:  7d69612 Clean up wording
+31:  813c711 = 31:  5a83a0d Replace 21 with 18 in "Exact match" example
+32:  1be77a3 = 32:  6010f4e brsrch* should use $lo for consistency
+33:  4067395 = 33:  9a1305c do we need explicit returns?
+34:  801c6ff = 34:  c5619cb Remove vestigial reference to bisectl_map
+35:  f639ebc = 35:  d10f9aa Fix diagram and proof for two-index search
+36:  1437332 = 36:  5eaf820 change: return just the SCALAR ref for element?
+37:  76e287f = 37:  75fe618 Expand to Five-element form?!??
+38:  cfba1fb = 38:  5afc845 Comment to explain the magic
+39:  bae5c1b = 39:  fdd6523 Use && for boolean AND... consistently
+40:  2fa053f = 40:  e65cd15 Test out implication of the five-element form
+41:  66fb943 = 41:  567b0d8 Test two more weird edge cases
+42:  0fb269c = 42:  6eadbf3 Add tests for the text-file thingy
+43:  cdb06d5 = 43:  ba6fa8e Continue draft
+
+---
+Looks like our old friend repo.or.cz needs update too...
+Here's that, anyways.
+
+$ ~/tree/utils/diff-range devel~15 43 repo+ssh/devel
+ORIG = cdb06d561b75bc4c21d09c03188d46118f5ccd3e (devel~15)
+HEAD = ba6fa8ecf6ae63185b2cf13ee36b0b2758dca427 (repo+ssh/devel)
+ 0:  cdb06d5 =  0:  ba6fa8e Continue draft
+ 1:  0fb269c =  1:  6eadbf3 Add tests for the text-file thingy
+ 2:  66fb943 =  2:  567b0d8 Test two more weird edge cases
+ 3:  2fa053f =  3:  e65cd15 Test out implication of the five-element form
+ 4:  bae5c1b =  4:  fdd6523 Use && for boolean AND... consistently
+ 5:  cfba1fb =  5:  5afc845 Comment to explain the magic
+ 6:  76e287f =  6:  75fe618 Expand to Five-element form?!??
+ 7:  1437332 =  7:  5eaf820 change: return just the SCALAR ref for element?
+ 8:  f639ebc =  8:  d10f9aa Fix diagram and proof for two-index search
+ 9:  801c6ff =  9:  c5619cb Remove vestigial reference to bisectl_map
+10:  4067395 = 10:  9a1305c do we need explicit returns?
+11:  1be77a3 = 11:  6010f4e brsrch* should use $lo for consistency
+12:  813c711 = 12:  5a83a0d Replace 21 with 18 in "Exact match" example
+13:  70c96c5 = 13:  7d69612 Clean up wording
+14:  6a60b32 = 14:  41cc3e6 Remove the "concrete" example amid the main POD
+15:  dcd8b9a = 15:  708c0d9 Have Claude review my draft as well
+16:  a25d250 = 16:  5e7b0d7 Fix a bunch of POD typos
+17:  794cfb8 = 17:  43abb34 Close out the subtest code block for consistency
+18:  7cae5a2 = 18:  94c0b6d Test conversion guide for List::MoreUtils
+19:  dd5d2b3 = 19:  c2cb0f6 probably drop the parens around "plan"
+20:  0f46748 = 20:  2df4824 Add conversion guide for List::Search
+21:  bfc7330 = 21:  0996cd1 Pin the total of List::BinarySearch subtests
+22:  930dc77 = 22:  a8d09c3 Re-write and test List::BinarySearch conversion
+23:  fe345a4 = 23:  5c7b285 Finish exact match tests
+24:  c53519b = 24:  3fbcbbc Bug-catching POD examples with tests
+25:  9a7d4e9 = 25:  2a29f52 Just call these guys "terms"
+26:  3480b25 = 26:  f83e3d3 doctest.t also belongs in the old test suite
+27:  3e3f90f = 27:  ef0536d typography: use B<...> for important words
+28:  34fe25f = 28:  9cd3485 Update renames in the comments
+29:  1f4ea92 = 29:  8f96cdc Be more precise with what the "array" is here
+30:  fa6fc7a = 30:  8a696c9 DRAFT: section of the "paper" about the real search
+31:  2ce903e = 31:  b58801f Stylistic tweaks
+32:  09cf02d = 32:  4948252 Conversion guide for some modules
+33:  60ec712 = 33:  91b09e3 Improve "exact match" examples
+34:  9775b10 = 34:  f183b0b Add copyright to sources
+35:  5b5ed2d = 35:  2aa2954 Test with a larger equal range for fun ;P
+36:  cfd2206 = 36:  1bb4eb7 Comment the 2-index searches
+37:  fa35cd2 = 37:  fcee201 Re-implement brsrch2
+38:  bcaa2f7 = 38:  81ce87d Re-implement blsrch2
+39:  fa7dba0 = 39:  7f74f70 Move attribution out of the "paper"
+40:  9bd1e88 = 40:  02a3db7 Hide copyright from GitHub readme
+41:  7288916 = 41:  7bea16a More range tests on absurd sets of numbers
+42:  04685b3 ! 42:  b88bba4 Refactor
+--- a/04685b3076221042c45c1de063d910132d85a4d4	2026-03-08 09:18:16.000000000 +0000
++++ b/b88bba4c4b9eb34c3bfe004992987c0238c1edf2	2026-03-08 09:18:16.000000000 +0000
+@@ -20,10 +20,10 @@
+ that here we are effectively abandoning the narrower
+ bounds found from each previous search range despite
+ having access to all the other lower-level stuff; the
+ exponential probe only serves to hide that fact and,
+-we might face problems if the step is any larger...
+-it just has to be *somehow* rewritten, blegh!
++we might face problems if is larger... it just has to
++be *somehow* rewritten, blegh!
+
+ [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
+
+ (My takeaway is that we perform blsrchx, *but* keep
+
+and a range diff just because i haven't pushed yet and
+can still run commands :)
+
+$ git range-diff devel~58..devel~15 repo+ssh/devel~43..repo+ssh/devel
+ 1:  04685b3 !  1:  b88bba4 Refactor
+    @@ Commit message
+         bounds found from each previous search range despite
+         having access to all the other lower-level stuff; the
+         exponential probe only serves to hide that fact and,
+    -    we might face problems if the step is any larger...
+    -    it just has to be *somehow* rewritten, blegh!
+    +    we might face problems if is larger... it just has to
+    +    be *somehow* rewritten, blegh!
+
+         [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
+
  2:  7288916 =  2:  7bea16a More range tests on absurd sets of numbers
  3:  9bd1e88 =  3:  02a3db7 Hide copyright from GitHub readme
  4:  fa7dba0 =  4:  7f74f70 Move attribution out of the "paper"
