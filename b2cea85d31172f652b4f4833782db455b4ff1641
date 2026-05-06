@@ -1,0 +1,44 @@
+i am going to do this thing where less important
+commits are not capitalized (just because capital
+letters kind of draw my attention..... i would
+rather not draw my attention with that.)
+
+$ ~/tree/utils/diff-range master 6 codeberg/master
+ORIG = e3452384f306f6584b1ff91afa2952f9850e7ee4 (master)
+HEAD = fbb14a0c833599e73906d5a18a54fcfc9636b1ed (codeberg/master)
+ 0:  e345238 =  0:  fbb14a0 this is a typo
+ 1:  35e2a8c =  1:  38637e4 Remove .github from manifest excludes
+ 2:  9ef9bb3 =  2:  808c201 Add security policy to manifest
+ 3:  3563ad8 =  3:  2a4de22 Call bisectl/bisectr "bisection methods" consistently
+ 4:  5867890 =  4:  1b7571c rm -rf .github
+ 5:  2f81817 !  5:  8f4a76a actually i don't get it
+--- a/2f8181797a289efd21a365e3fd627e1d40b18757	2026-05-06 23:07:19.000000000 +0000
++++ b/8f4a76af49435c7be76fd47d0e4c82056d3281b0	2026-05-06 23:07:19.000000000 +0000
+@@ -2,9 +2,9 @@
+ parent da78c6971311cd18d439f0cd8c49f2a03a652158
+ author Ethan Meng <ethan@rapidcow.org> 1778108000 -0500
+ committer Ethan Meng <ethan@rapidcow.org> 1778108839 -0500
+ 
+-actually i don't get it
++Actually, I don't get it
+ 
+ Shouldn't the release tarball itself include metadata
+ concerning the date of validity of this document?
+ I would not want to "refresh" the TTL per release...
+
+$ git diff-range master~6..master codeberg/master~6..codeberg/master
+1:  2f81817 ! 1:  8f4a76a actually i don't get it
+    @@ Metadata
+     Author: Ethan Meng <ethan@rapidcow.org>
+     
+      ## Commit message ##
+    -    actually i don't get it
+    +    Actually, I don't get it
+     
+         Shouldn't the release tarball itself include metadata
+         concerning the date of validity of this document?
+2:  5867890 = 2:  1b7571c rm -rf .github
+3:  3563ad8 = 3:  2a4de22 Call bisectl/bisectr "bisection methods" consistently
+4:  9ef9bb3 = 4:  808c201 Add security policy to manifest
+5:  35e2a8c = 5:  38637e4 Remove .github from manifest excludes
+6:  e345238 = 6:  fbb14a0 this is a typo
