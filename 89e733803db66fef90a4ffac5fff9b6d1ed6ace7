@@ -1,0 +1,45 @@
+$ ~/tree/utils/diff-range cfd2206 7 codeberg/master
+ORIG = cfd220624bc7b26530ebc3c813d9f32ed6748fc8
+HEAD = 1bb4eb7730742b43fc9a075565d47b3ed06a1fee (codeberg/master)
+ 0:  cfd2206 =  0:  1bb4eb7 Comment the 2-index searches
+ 1:  fa35cd2 =  1:  fcee201 Re-implement brsrch2
+ 2:  bcaa2f7 =  2:  81ce87d Re-implement blsrch2
+ 3:  fa7dba0 =  3:  7f74f70 Move attribution out of the "paper"
+ 4:  9bd1e88 =  4:  02a3db7 Hide copyright from GitHub readme
+ 5:  7288916 =  5:  7bea16a More range tests on absurd sets of numbers
+ 6:  04685b3 !  6:  b88bba4 Refactor
+--- a/04685b3076221042c45c1de063d910132d85a4d4	2026-03-08 09:18:16.000000000 +0000
++++ b/b88bba4c4b9eb34c3bfe004992987c0238c1edf2	2026-03-08 09:18:16.000000000 +0000
+@@ -20,10 +20,10 @@
+ that here we are effectively abandoning the narrower
+ bounds found from each previous search range despite
+ having access to all the other lower-level stuff; the
+ exponential probe only serves to hide that fact and,
+-we might face problems if the step is any larger...
+-it just has to be *somehow* rewritten, blegh!
++we might face problems if is larger... it just has to
++be *somehow* rewritten, blegh!
+ 
+ [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
+ 
+ (My takeaway is that we perform blsrchx, *but* keep
+
+$ git range-diff cfd2206~7..cfd2206 1bb4eb7~7..1bb4eb
+1:  04685b3 ! 1:  b88bba4 Refactor
+    @@ Commit message
+         bounds found from each previous search range despite
+         having access to all the other lower-level stuff; the
+         exponential probe only serves to hide that fact and,
+    -    we might face problems if the step is any larger...
+    -    it just has to be *somehow* rewritten, blegh!
+    +    we might face problems if is larger... it just has to
+    +    be *somehow* rewritten, blegh!
+     
+         [0] https://redirect.github.com/gcc-mirror/gcc/blob/254a858ae7ae1400452f1c80125c80de0778bde5/libstdc++-v3/include/bits/stl_algo.h#L2073-L2108
+     
+2:  7288916 = 2:  7bea16a More range tests on absurd sets of numbers
+3:  9bd1e88 = 3:  02a3db7 Hide copyright from GitHub readme
+4:  fa7dba0 = 4:  7f74f70 Move attribution out of the "paper"
+5:  bcaa2f7 = 5:  81ce87d Re-implement blsrch2
+6:  fa35cd2 = 6:  fcee201 Re-implement brsrch2
+7:  cfd2206 = 7:  1bb4eb7 Comment the 2-index searches
