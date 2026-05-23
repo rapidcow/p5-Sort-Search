@@ -1,5 +1,5 @@
 # pack-refs with: peeled fully-peeled sorted 
 5ac8eee3d35d1cb67d1c246c09218b0f4e52d5b3 refs/heads/devel
 785d0cef5fc27ad4953da8156ebddfb22f1d0579 refs/heads/master
-2f2171614c618b4007e0fa005eded2b79f04686d refs/notes/amends
+f46a7cae3abbb8e0407dd1ba785cf7a91254ae82 refs/notes/amends
 97fab25df3f5c575e041c81d261fabdb01d86572 refs/notes/commits
