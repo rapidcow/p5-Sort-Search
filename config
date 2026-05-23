@@ -2,7 +2,7 @@
 	repositoryformatversion = 0
 	filemode = true
 	bare = true
-[shell "DEFAULT"]
+[shell]
 	permission = rx
 [shell "guest@rapidcow.org"]
 	permission = rx
