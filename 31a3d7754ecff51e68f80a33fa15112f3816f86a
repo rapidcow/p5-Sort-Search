@@ -1,0 +1,28 @@
+Rebase again i know; but i take AI attribution very seriously
+(even if my eyes really hurt stuck in this posture, aegh....)
+
+i pretty much didn't tweak anything except the indent; and so
+indeed it was evident from the em dash i didn't write it. i'm
+not sure what that tells you about the code, copyright and all,
+but... eh.  at least that's the truth for ya.  (wasn't like i
+try very hard faking n' all lol. XD  i'm not into vibe coding
+and all if i don't already want to get done with this already
+and start working on my websites..... XD)
+
+$ ~/tree/utils/diff-range codeberg 5 master^1
+ORIG = c7606bbf5d0b03d2359aca931a7871664f038e4b (codeberg)
+HEAD = 2c8c0634b172bef1fdc988387719dc487b93dae1 (master^1)
+ 0:  c7606bb =  0:  2c8c063 Just import all the names please
+ 1:  4012e04 =  1:  a8385ea Expose as BST_{leap,delv} as subcommands
+ 2:  66b69e1 =  2:  c913fa9 tree-search tests fixup
+ 3:  983bca2 =  3:  cf3d66d xlib/tree-search: fix four bugs; xt/tree-search: add tests
+ 4:  d65de75 !  4:  3625a59 Begin another experiment
+--- a/d65de752761f6684e6f52b90a4c7976d29194978	2026-05-26 14:26:40.000000000 +0000
++++ b/3625a59f75664dca1136a89ce9fdbd1bdba991eb	2026-05-26 14:26:40.000000000 +0000
+@@ -6,4 +6,6 @@
+ Begin another experiment
+ 
+ this one is very pertinent to the next bit of my essay (and kind of
+ sort of the bigger reason why i made such a GENERALIZED library...)
++
++(BST_leap and BST_delv by Claude.)
