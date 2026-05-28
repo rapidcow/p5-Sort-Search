@@ -1,0 +1,127 @@
+i just learned about jq string interpolation... thanks https:
+//jdriven.com/blog/2023/10/jq-Joy-Using-String-Interpolation !
+
+That said, here is the back-and-forth:
+
+$ jq -s .[94] ~/.claude/projects/-var-lib-ai-claude-p5-Sort-Search/c502d579-8f72-442d-b7dc-28a41505de8d.jsonl |
+  jq -r '
+"TYPE: \( .type )
+UUID: \( .uuid ) < \( .parentUuid )
+PID: \( .promptId )
+SID: \( .sessionId )
+Time: \( .timestamp )
+Version: \( .version )
+
+\( .message.content )
+---"'
+TYPE: user
+UUID: 74ab93af-6807-41c4-a54d-8970e29c29f9 < d4f6ac3f-090f-4a62-b184-c43b738397e1
+PID: a709ee3c-f731-49f4-b24c-f3ce4fb584cf
+SID: c502d579-8f72-442d-b7dc-28a41505de8d
+Time: 2026-05-26T13:30:13.489Z
+Version: 2.1.150
+
+here's my idea: a node should be: just a string. that's it. that serves as a key to the hash map that contains content. we expose acomp as an overrideable method that defines an order (predecessor, suffix, equality, prefix, successor); and the way acomp will be implemented is just going to delegate to a "strtok" function which acts on the keys themselves.
+
+the tree itself will represent the root tree; no subtree busines... (not like how Rust btree and Java redblack tree represent ranges as a magic tied subtree... we're not doing any of that -- the OOP stops at the acomp logic)
+
+actually, don't even make it OOP; just have a "tree_list" function and pass "acomp" as the first argument.
+---
+
+$ jq -s .[96] ~/.claude/projects/-var-lib-ai-claude-p5-Sort-Search/c502d579-8f72-442d-b7dc-28a41505de8d.jsonl |
+  jq -r '
+"TYPE: \( .type ) (\( .operation ))
+SID: \( .sessionId )
+Time: \( .timestamp )
+
+\( .content )
+---"'
+TYPE: queue-operation (enqueue)
+SID: c502d579-8f72-442d-b7dc-28a41505de8d
+Time: 2026-05-26T13:30:51.758Z
+
+you do need a second slot for strtok... i take that back. maybe still OOP.
+---
+
+$ jq -s .[99] ~/.claude/projects/-var-lib-ai-claude-p5-Sort-Search/c502d579-8f72-442d-b7dc-28a41505de8d.jsonl |
+  jq -r '
+"TYPE: \( .type )
+UUID: \( .uuid ) < \( .parentUuid )
+Model: \( .message.model )
+SID: \( .sessionId )
+Time: \( .timestamp )
+Version: \( .version )
+
+\( .message.content[0].text )
+---"'
+TYPE: assistant
+UUID: 27b91b96-4861-424a-9cf1-1d2485296fa7 < 41f636e7-6d85-4e4e-93ee-7371d60bf3a3
+Model: claude-sonnet-4-6
+SID: c502d579-8f72-442d-b7dc-28a41505de8d
+Time: 2026-05-26T13:32:10.843Z
+Version: 2.1.150
+
+That's a clean design. The key insight is that `acomp($element, $key)` already has 5 natural return values from `seq_cmp`, and `tree_list` exploits all of them:
+
+```
+seq_cmp result   meaning                used as
+    -2           predecessor            negative (before range)
+    -1           $element is ancestor   negative (before range)
+     0           equal                  negative - 1 = -1 (before, excludes key itself)
+    +1           $element is descendant  0  ← the "in range" value
+    +2           successor              positive (after range)
+```
+
+So the `- 1` trick from the PoC is just the encoding layer between `acomp`'s 5-value output and `blsrch2`'s 3-value expectation.
+
+**`tree_list` internally does two kinds of binary search:**
+
+```perl
+sub tree_list {
+    my ($acomp, $data, $key) = @_;
+
+    # Step 1: bound the whole subtree
+    my ($lo, $hi) = blsrch2 { $acomp->($_, $key) - 1 } $data;
+
+    # Step 2: iterate direct children, skipping subtrees
+    my @children;
+    while ($lo < $hi) {
+        my $child = $data->[$lo];
+        push @children, $child;
+        # blsrch1 finds first element where acomp > 0 relative to $child,
+        # i.e. first successor — skips $child's entire subtree
+        $lo = blsrch1 { $acomp->($_, $child) - 1 } $data, $lo + 1, $hi;
+    }
+    @children;
+}
+
+sub tree_relist {
+    my ($acomp, $data, $key) = @_;
+    my ($lo, $hi) = blsrch2 { $acomp->($_, $key) - 1 } $data;
+    @{$data}[$lo .. $hi - 1];
+}
+```
+
+**`acomp` is built from `strtok`:**
+
+```perl
+sub make_acomp {
+    my $strtok = shift;
+    sub {
+        my ($elem, $key) = @_;
+        seq_cmp { $a cmp $b } $strtok->($elem), $strtok->($key);
+    };
+}
+
+my $path_acomp = make_acomp(sub { [split "/", shift, -1] });
+my $dns_acomp  = make_acomp(sub { [reverse split /\./, shift] });
+```
+
+**Calling it:**
+
+```perl
+my @kids = tree_list($path_acomp, \@sorted, "usr/bin");
+my @all  = tree_relist($dns_acomp, \@sorted, "example.com");
+```
+
+No OOP anywhere. The only "architecture" is that `make_acomp` is the injection point, `strtok` defines the domain, and `tree_list`/`tree_relist` are pure functions over a sorted arrayref. The producer (File::Find with sorted preprocess) is completely separate.
