@@ -12,3 +12,5 @@
 	permission = rwsx
 [shell "emeng@cs.wisc.edu"]
 	permission = rwx
+[shell "rapidcow@NucBox-G3.local"]
+	permission = rwsx
