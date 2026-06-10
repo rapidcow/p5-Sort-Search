@@ -5,6 +5,9 @@ i'm sorry.... but here's a range diff to make you feel
 better.  just in case.  i'll do it once with my script
 and once with git-range-diff(1).
 
+[NOTE: ethan somehow messed up the order for all of the
+following range diffs. he's literally so dumb. beat him]
+
 $ ~/tree/utils/diff-range devel~15 43 codeberg/devel
 ORIG = cdb06d561b75bc4c21d09c03188d46118f5ccd3e (devel~15)
 HEAD = ba6fa8ecf6ae63185b2cf13ee36b0b2758dca427 (codeberg/devel)
