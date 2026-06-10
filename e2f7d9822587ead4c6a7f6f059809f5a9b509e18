@@ -1,0 +1,44 @@
+how many of these unannotated freaks do i have... <:(
+
+$ git range-diff af2ae13~5..af2ae13 8b7bdc4~5..8b7bdc4
+[31m1:  97c86c1 [m[33m![m[32m 1:  8a381bd[m[33m Fix bsrchpx on boundary case with positive matches[m
+    [7m[36m@@[m [mCommit message[m
+         don't be fooled by the amount of comments and debug prints[m
+         surrounded by it... (also the tests had no distinguishable[m
+         names (i was too lazy to add them lol...) so i added those[m
+    [7m[31m-[m[2m    in as well.)  nothing crazy-big patch going on!)[m
+    [7m[32m+[m[1m    in as well.)  nothing crazy-big patch going on![m
+    [7m[32m+[m
+    [7m[32m+[m[1m      [[ okay, i did sneak in ONE other change in this commit,[m
+    [7m[32m+[m[1m      as i've noted in this commit note:[m
+    [7m[32m+[m
+    [7m[32m+[m[1m        +Technically, this patch also addresses the[m
+    [7m[32m+[m[1m        +case where is the root zone ("."); previously[m
+    [7m[32m+[m[1m        +it said $p? > 0, where it should have allowed[m
+    [7m[32m+[m[1m        +0 since $p? is length minus 1, not length itself.[m
+    [7m[32m+[m[1m        +[m
+    [7m[32m+[m[1m        +I'm sure people who operate the root servers[m
+    [7m[32m+[m[1m        +use something written in a much lower level[m
+    [7m[32m+[m[1m        +language though... I should have mentioned it[m
+    [7m[32m+[m[1m        +in the commit message though.  Sorry![m
+    [7m[32m+[m
+    [7m[32m+[m[1m      (but then i realized i wanted to fixup something so i'm[m
+    [7m[32m+[m[1m      just rebasing this while nobody's watching....)[m
+    [7m[32m+[m[1m      but even then that is IT.  trust me i really tried...[m
+    [7m[32m+[m[1m      TWO changes isn't that bad, right? :c ]][m
+     [m
+         (also credit to Claude's critique... (the generated code[m
+         isn't great, but it sure forces me to explain my nonsense[m
+    [7m[36m@@[m [mxt/nsec-search.t: RR[m
+    [32m +	cmp_ok ($lo, '==', 7);[m
+    [32m +	is ($prv, "apps.$O 3 IN AAAA");[m
+    [32m +	is ($nxt, "apps.$O 1 IN A");[m
+    [7m[31m-[m[2;32m+[m
+    [7m[31m-[m[2;32m+	done_testing();[m
+      };[m
+[33m2:  7bb106d = 2:  60e799b Generalize[m
+[33m3:  facacb8 = 3:  011d2e1 Allow "undef" for explicit index form[m
+[33m4:  4aa42d9 = 4:  254e94d Punctuation[m
+[33m5:  af2ae13 = 5:  8b7bdc4 Just say we made the bounds symmetric ugh[m
+
+(this time my laptop DOES have the original commits though. :/)
