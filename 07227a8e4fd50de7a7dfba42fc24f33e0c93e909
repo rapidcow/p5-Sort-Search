@@ -1,0 +1,24 @@
+FWIW, the reason i said that i don't know how it works
+is that, even assuming twos complement, ~0 may very well
+be -1; which is what Python (where integers can grow as
+big as your memory can handle) does:
+
+>>> ~0
+-1
+
+They're equivalent at a bitwise level (again, assuming
+twos complement, -1 might as well be equivalent to the
+maximum representable unsigned integer modulo 2^{size}),
+so there is technically no reason to prefer one over the
+other.  Python only has one choice to use -1 since there
+is no "largest integer"; what i am less confident about
+though is perl, since (2^{size}-1) (UV) and -1 both seem
+to be viable candidates for the all-1 mask:
+
+$ perl -lwe 'print ~0 & 777'
+777
+$ perl -lwe 'print -1 & 777'
+777
+
+The only thing stopping ~0 from being -1 is the interpre-
+tation of the most significant bit as signed/unsigned...
