@@ -1,0 +1,70 @@
+Eh, I didn't annotate this?
+
+$ git range-diff 431f1fe~6..431f1fe 9824040~9..9824040
+[31m 1:  3625a59 [m[33m![m[32m  1:  010e040[m[33m Begin another experiment[m
+    [7m[36m@@[m [mCommit message[m
+         this one is very pertinent to the next bit of my essay (and kind of[m
+         sort of the bigger reason why i made such a GENERALIZED library...)[m
+     [m
+    [7m[31m-[m[2m    (BST_leap and BST_delv by Claude.)[m
+    [7m[31m-[m
+      ## xlib/tree-search.pl (new) ##[m
+    [36m @@[m
+    [32m +#!/usr/bin/env perl[m
+    [7m[36m@@[m [mxlib/tree-search.pl (new)[m
+    [32m +);[m
+    [32m +our @ISA = qw(Exporter);[m
+    [32m +[m
+    [7m[31m-[m[2;32m+sub BST_leap {[m
+    [7m[31m-[m[2;32m+	my ($acomp, $list, $node) = @_;[m
+    [7m[31m-[m[2;32m+	# Step 1: bound the whole subtree[m
+    [7m[31m-[m[2;32m+	my ($lo, $hi) = blsrch2 { $acomp->($_, $node) - 1 } $list;[m
+    [7m[31m-[m[2;32m+[m
+    [7m[31m-[m[2;32m+	# Step 2: iterate direct children, skipping subtrees[m
+    [7m[31m-[m[2;32m+	my @children;[m
+    [7m[31m-[m[2;32m+	while ($lo < $hi) {[m
+    [7m[31m-[m[2;32m+		my $child = $list->[$lo];[m
+    [7m[31m-[m[2;32m+		push @children, $child;[m
+    [7m[31m-[m[2;32m+		# blsrch1 finds first element where acomp > 0 relative to $child,[m
+    [7m[31m-[m[2;32m+		# i.e. first successor — skips $child's entire subtree[m
+    [7m[31m-[m[2;32m+		$lo = blsrch1 { $acomp->($_, $child) - 1 } $list, $lo + 1, $hi;[m
+    [7m[31m-[m[2;32m+	}[m
+    [7m[31m-[m[2;32m+	@children;[m
+    [7m[31m-[m[2;32m+}[m
+    [7m[31m-[m[2;32m+[m
+    [7m[31m-[m[2;32m+sub BST_delv {[m
+    [7m[31m-[m[2;32m+	my ($acomp, $list, $node) = @_;[m
+    [7m[31m-[m[2;32m+	# Just bound the whole subtree[m
+    [7m[31m-[m[2;32m+	my ($lo, $hi) = blsrch2 { $acomp->($_, $node) - 1 } $list;[m
+    [7m[31m-[m[2;32m+	@{$list}[$lo .. $hi-1];[m
+    [7m[31m-[m[2;32m+}[m
+    [7m[31m-[m[2;32m+[m
+    [32m +sub uri_strtok {[m
+    [32m +	my ($path) = @_;[m
+    [32m +	$path =~ s{^/}{};[m
+[32m -:  ------- >  2:  2a76a85 BST_leap and BST_delv proof of concept[m
+[33m 2:  cf3d66d =  3:  c752079 xlib/tree-search: fix four bugs; xt/tree-search: add tests[m
+[33m 3:  c913fa9 =  4:  94da660 tree-search tests fixup[m
+[33m 4:  a8385ea =  5:  fce804a Expose as BST_{leap,delv} as subcommands[m
+[33m 5:  2c8c063 =  6:  17e5196 Just import all the names please[m
+[31m 6:  431f1fe [m[33m![m[32m  7:  477409e[m[33m xlib/tree-search: Fix a few other spots[m
+    [7m[36m@@[m [mCommit message[m
+         been pushing a bit too hard but i just couldn't stop...[m
+         we're so close to getting this done, i can't wait... :([m
+     [m
+    [7m[32m+[m[1m    EDIT: well guilt no more i rebased once again and now[m
+    [7m[32m+[m[1m    the AI-generated code is separate from the ones i typed[m
+    [7m[32m+[m[1m    myself in a trance.  nobody can slander me now so yay :D[m
+    [7m[32m+[m
+      ## xlib/tree-search.pl ##[m
+    [36m @@ xlib/tree-search.pl: sub BST_leap {[m
+      	while ($lo < $hi) {[m
+[32m -:  ------- >  8:  87e5c21 tree-search find: roll our own lexicograpical sort[m
+[32m -:  ------- >  9:  9824040 tree-search: sanity check on self[m
+
+Oh yeah... that happened.  Well, nobody saw it so :P
+
+(I ran this diff on T480s since only the server and i have
+the commits before force-push.  I just copied it over here
+so that i can test that my rDNS (with a permissive 2-second
+timeout) is working... yeah :)
